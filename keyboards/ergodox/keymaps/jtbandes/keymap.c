@@ -1,10 +1,13 @@
 #include "ergodox.h"
 #include "debug.h"
 #include "action_layer.h"
+#include "timer.h"
 
 #define BASE 0 // default layer
 #define SYMB 1 // symbols
 #define MDIA 2 // media keys
+
+LEADER_EXTERNS();
 
 #define _______ KC_TRNS
 
@@ -55,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 1: Symbol Layer
  *
  * ,--------------------------------------------------.           ,--------------------------------------------------.
- * |        |  F1  |  F2  |  F3  |  F4  |  F5  |      |           |      |  F6  |  F7  |  F8  |  F9  |  F10 |   F11  |
+ * |        |  F1  |  F2  |  F3  |  F4  |  F5  |      |           |Leader|  F6  |  F7  |  F8  |  F9  |  F10 |   F11  |
  * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
  * |        |   !  |   @  |   {  |   }  |   |  |      |           |      |   Up |   7  |   8  |   9  |   *  |   F12  |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
@@ -85,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                _______,
                                _______,_______,_______,
        // right hand
-       _______, KC_F6,   KC_F7,  KC_F8,   KC_F9,   KC_F10,  KC_F11,
+       KC_LEAD, KC_F6,   KC_F7,  KC_F8,   KC_F9,   KC_F10,  KC_F11,
        _______, KC_UP,   KC_7,   KC_8,    KC_9,    KC_ASTR, KC_F12,
                 KC_DOWN, KC_4,   KC_5,    KC_6,    KC_PLUS, _______,
        _______, KC_AMPR, KC_1,   KC_2,    KC_3,    KC_BSLS, _______,
@@ -181,6 +184,20 @@ void matrix_scan_user(void) {
         default:
             // none
             break;
+    }
+    
+    LEADER_DICTIONARY() {
+        leading = false;
+        leader_end();
+        print("lend\n");
+        
+        SEQ_THREE_KEYS(KC_3, KC_2, KC_1) {
+            print("resetting\n");
+            ergodox_blink_all_leds();
+            reset_keyboard();
+            // register_code(KC_BOOTLOADER);
+            // unregister_code(KC_BOOTLOADER);
+        }
     }
 
 };
