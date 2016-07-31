@@ -32,7 +32,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                        | Left | Right|       | Down | Up     |
  *                                 ,------|------|------|       |------+--------+------.
  *                                 |      |      | Home |       | PgUp |        |      |
- *                                 | Space|Backsp|------|       |------| Enter  |Space |
+ *                                 | Space|Backsp|------|       |------| Return |Space |
  *                                 |      |ace   | End  |       | PgDn |        |      |
  *                                 `--------------------'       `----------------------'
  */
@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                        |      |      |       |      |      |
  *                                 ,------|------|------|       |------+------+------.
  *                                 |      |      | Home |       | PgUp |      |      |
- *                                 |      | Del  |------|       |------|      |      |
+ *                                 |      | Del  |------|       |------|Enter |      |
  *                                 |      |      | End  |       | PgDn |      |      |
  *                                 `--------------------'       `--------------------'
  */
@@ -98,7 +98,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                          _______,KC_DOT,  KC_0,    KC_EQL,  _______,
        _______, _______,
        KC_PGUP,
-       KC_PGDN, _______, _______
+       KC_PGDN, KC_PENT, _______
 ),
 /* Keymap 2: Media and mouse keys
  *
